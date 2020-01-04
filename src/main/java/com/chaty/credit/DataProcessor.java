@@ -36,6 +36,8 @@ public class DataProcessor {
 					while ((line = br.readLine()) != null) {
 
 						if (line.contains("BOOSTER JUICE, STORE")) {
+							
+							System.out.println("LINE -----" + line);
 
 							String[] country = line.split(cvsSplitBy);
 
@@ -46,6 +48,8 @@ public class DataProcessor {
 							model.setDebit(country[4]);
 							yearList.add(model);
 						} else {
+							
+							System.out.println("LINE -----" + line);
 							
 							String[] country = line.split(cvsSplitBy);
 
