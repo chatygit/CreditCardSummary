@@ -22,13 +22,13 @@ public class AggregatePurchase {
 			if (mappedDate.containsKey(row.getDate().getYear())) {
 
 				List<CreditFileModel> itemList = mappedDate.get(row.getDate().getYear());
-				if (row.getDate() != null && row.getCredit().matches("[-+]?[0-9]*\\.?[0-9]+")) {
+				if (row.getDate() != null && row.getCredit() != null) {
 					itemList.add(row);
 					mappedDate.put(row.getDate().getYear(), itemList);
 				}
 
 			} else {
-				if (row.getDate() != null && row.getCredit().matches("[-+]?[0-9]*\\.?[0-9]+")) {
+				if (row.getDate() != null && row.getCredit() != null) {
 					List<CreditFileModel> itemList2 = new ArrayList<>();
 					itemList2.add(row);
 					mappedDate.put(row.getDate().getYear(), itemList2);
@@ -43,7 +43,14 @@ public class AggregatePurchase {
 			TotalByLocation totalLoc = new TotalByLocation();
 			totalLoc.setLocation(entry.getKey().toString());
 			totalLoc.setPurchaseList(entry.getValue());
-			Double total = entry.getValue().stream().mapToDouble(pp -> Double.parseDouble(pp.getCredit())).sum();
+			Double total = entry.getValue().stream().mapToDouble(pp -> {
+				if (pp.getCredit() != null && !pp.getCredit().isEmpty()) {
+					return Double.parseDouble(pp.getCredit());
+				} else {
+					return new Double(0.00);
+				}
+
+			}).sum();
 			totalLoc.setCreditTotal(total.intValue());
 			totalByLocation.add(totalLoc);
 		});
@@ -63,13 +70,13 @@ public class AggregatePurchase {
 			if (maptoLocation.containsKey(row.getLocation())) {
 
 				List<CreditFileModel> itemList = maptoLocation.get(row.getLocation());
-				if (row.getCredit().matches("[-+]?[0-9]*\\.?[0-9]+")) {
+				if (row.getCredit() != null) {
 					itemList.add(row);
 					maptoLocation.put(row.getLocation(), itemList);
 				}
 
 			} else {
-				if (row.getCredit().matches("[-+]?[0-9]*\\.?[0-9]+")) {
+				if (row.getCredit() != null) {
 					List<CreditFileModel> itemList2 = new ArrayList<>();
 					itemList2.add(row);
 					maptoLocation.put(row.getLocation(), itemList2);
@@ -84,7 +91,15 @@ public class AggregatePurchase {
 			TotalByLocation totalLoc = new TotalByLocation();
 			totalLoc.setLocation(entry.getKey());
 			totalLoc.setPurchaseList(entry.getValue());
-			Double total = entry.getValue().stream().mapToDouble(pp -> Double.parseDouble(pp.getCredit())).sum();
+			System.out.println(entry);
+			Double total = entry.getValue().stream().mapToDouble(pp -> {
+				if (pp.getCredit() != null && !pp.getCredit().isEmpty()) {
+					return Double.parseDouble(pp.getCredit());
+				} else {
+					return new Double(0.00);
+				}
+
+			}).sum();
 			totalLoc.setCreditTotal(total.intValue());
 			totalByLocation.add(totalLoc);
 		});

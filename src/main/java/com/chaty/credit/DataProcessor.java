@@ -43,6 +43,7 @@ public class DataProcessor {
 		try (Stream<Path> paths = Files.walk(Paths.get("/Users/chaty/Documents/TaxDocs/Test"))) {
 			paths.filter(Files::isRegularFile).forEach(file -> {
 
+				System.out.println(file.getFileName());
 				try (BufferedReader br = new BufferedReader(new FileReader(file.toString()))) {
 
 					while ((line = br.readLine()) != null) {
@@ -54,8 +55,8 @@ public class DataProcessor {
 							CreditFileModel model = new CreditFileModel();
 							model.setDate(LocalDate.parse(country[0].toString(), formatter));
 							model.setLocation(country[1].replaceAll("\"", ""));
-							model.setCredit(country[3]);
-							model.setDebit(country[4]);
+							model.setCredit(country[3].replaceAll(",", ""));
+							model.setDebit(country[4].replaceAll(",", ""));
 							yearList.add(model);
 						} else {
 
@@ -64,8 +65,8 @@ public class DataProcessor {
 							CreditFileModel model = new CreditFileModel();
 							model.setDate(LocalDate.parse(country[0].toString(), formatter));
 							model.setLocation(country[1]);
-							model.setCredit(country[2]);
-							model.setDebit(country[3]);
+							model.setCredit(country[2].replaceAll(",", ""));
+							model.setDebit(country[3].replaceAll(",", ""));
 							yearList.add(model);
 
 						}
@@ -152,10 +153,11 @@ public class DataProcessor {
 					while ((line = br.readLine()) != null) {
 
 						String val = line.substring(line.lastIndexOf("$") + 1);
+						boolean isCredit = line.substring(line.lastIndexOf("$") - 1).contains("-$");
 						String month = line.substring(0, 3);
-						String day = line.substring(4, 5);
+						String day = line.substring(4, 6).replace(" ", "");
 
-						Integer location = StringUtils.ordinalIndexOf(line, " ", 5);
+						Integer location = StringUtils.ordinalIndexOf(line, " ", 4);
 						Integer year = Integer.parseInt(
 								file.getFileName().toString().substring(0, file.getFileName().toString().length() - 4));
 
@@ -163,7 +165,12 @@ public class DataProcessor {
 								.withDayOfMonth(Integer.parseInt(day));
 
 						CreditFileModel model = new CreditFileModel();
-						model.setCredit(val);
+						if(!isCredit) {
+							model.setCredit(val.replaceAll(",", ""));	
+						}else {
+							model.setDebit(val.replaceAll(",", ""));
+						}
+						
 						model.setDate(date);
 						model.setLocation(line.substring(location, line.lastIndexOf("$")));
 						yearList.add(model);
