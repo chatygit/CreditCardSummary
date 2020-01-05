@@ -28,7 +28,7 @@ public class Controller {
 
 	@GetMapping
 	public String test() {
-		// dataProcessor.processPDFFile();
+		dataProcessor.processTextile();
 		return "chaty";
 	}
 	
