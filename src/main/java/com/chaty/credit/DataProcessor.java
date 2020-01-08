@@ -43,7 +43,6 @@ public class DataProcessor {
 		try (Stream<Path> paths = Files.walk(Paths.get("/Users/chaty/Documents/TaxDocs/Test"))) {
 			paths.filter(Files::isRegularFile).forEach(file -> {
 
-				System.out.println(file.getFileName());
 				try (BufferedReader br = new BufferedReader(new FileReader(file.toString()))) {
 
 					while ((line = br.readLine()) != null) {
@@ -55,8 +54,8 @@ public class DataProcessor {
 							CreditFileModel model = new CreditFileModel();
 							model.setDate(LocalDate.parse(country[0].toString(), formatter));
 							model.setLocation(country[1].replaceAll("\"", ""));
-							model.setCredit(country[3].replaceAll(",", ""));
-							model.setDebit(country[4].replaceAll(",", ""));
+							model.setDebit(country[3].replaceAll(",", ""));
+							model.setCredit(country[4].replaceAll(",", ""));
 							yearList.add(model);
 						} else {
 
@@ -65,8 +64,8 @@ public class DataProcessor {
 							CreditFileModel model = new CreditFileModel();
 							model.setDate(LocalDate.parse(country[0].toString(), formatter));
 							model.setLocation(country[1]);
-							model.setCredit(country[2].replaceAll(",", ""));
-							model.setDebit(country[3].replaceAll(",", ""));
+							model.setDebit(country[2].replaceAll(",", ""));
+							model.setCredit(country[3].replaceAll(",", ""));
 							yearList.add(model);
 
 						}
@@ -165,7 +164,7 @@ public class DataProcessor {
 								.withDayOfMonth(Integer.parseInt(day));
 
 						CreditFileModel model = new CreditFileModel();
-						if(!isCredit) {
+						if(isCredit) {
 							model.setCredit(val.replaceAll(",", ""));	
 						}else {
 							model.setDebit(val.replaceAll(",", ""));

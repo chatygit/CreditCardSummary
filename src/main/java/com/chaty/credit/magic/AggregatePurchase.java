@@ -13,6 +13,12 @@ import com.chaty.credit.model.TotalByLocation;
 @Component
 public class AggregatePurchase {
 
+	/**
+	 * Aggregates given list by year.
+	 * 
+	 * @param dataList
+	 * @return List of {@link TotalByLocation}
+	 */
 	public List<TotalByLocation> aggregateByYear(final List<CreditFileModel> dataList) {
 
 		Map<Integer, List<CreditFileModel>> mappedDate = new ConcurrentHashMap<Integer, List<CreditFileModel>>();
@@ -22,13 +28,13 @@ public class AggregatePurchase {
 			if (mappedDate.containsKey(row.getDate().getYear())) {
 
 				List<CreditFileModel> itemList = mappedDate.get(row.getDate().getYear());
-				if (row.getDate() != null && row.getCredit() != null) {
+				if (row.getDate() != null) {
 					itemList.add(row);
 					mappedDate.put(row.getDate().getYear(), itemList);
 				}
 
 			} else {
-				if (row.getDate() != null && row.getCredit() != null) {
+				if (row.getDate() != null) {
 					List<CreditFileModel> itemList2 = new ArrayList<>();
 					itemList2.add(row);
 					mappedDate.put(row.getDate().getYear(), itemList2);
@@ -43,7 +49,8 @@ public class AggregatePurchase {
 			TotalByLocation totalLoc = new TotalByLocation();
 			totalLoc.setLocation(entry.getKey().toString());
 			totalLoc.setPurchaseList(entry.getValue());
-			Double total = entry.getValue().stream().mapToDouble(pp -> {
+
+			Double totalCredit = entry.getValue().stream().mapToDouble(pp -> {
 				if (pp.getCredit() != null && !pp.getCredit().isEmpty()) {
 					return Double.parseDouble(pp.getCredit());
 				} else {
@@ -51,7 +58,17 @@ public class AggregatePurchase {
 				}
 
 			}).sum();
-			totalLoc.setCreditTotal(total.intValue());
+
+			Double totalDebit = entry.getValue().stream().mapToDouble(pp -> {
+				if (pp.getDebit() != null && !pp.getDebit().isEmpty()) {
+					return Double.parseDouble(pp.getDebit());
+				} else {
+					return new Double(0.00);
+				}
+
+			}).sum();
+			totalLoc.setCreditTotal(totalCredit.intValue());
+			totalLoc.setDebitTotal(totalDebit.intValue());
 			totalByLocation.add(totalLoc);
 		});
 		totalByLocation.sort((a, b) -> a.getCreditTotal().compareTo(b.getCreditTotal()));
@@ -68,19 +85,14 @@ public class AggregatePurchase {
 
 		{
 			if (maptoLocation.containsKey(row.getLocation())) {
-
 				List<CreditFileModel> itemList = maptoLocation.get(row.getLocation());
-				if (row.getCredit() != null) {
-					itemList.add(row);
-					maptoLocation.put(row.getLocation(), itemList);
-				}
+				itemList.add(row);
+				maptoLocation.put(row.getLocation(), itemList);
 
 			} else {
-				if (row.getCredit() != null) {
-					List<CreditFileModel> itemList2 = new ArrayList<>();
-					itemList2.add(row);
-					maptoLocation.put(row.getLocation(), itemList2);
-				}
+				List<CreditFileModel> itemList2 = new ArrayList<>();
+				itemList2.add(row);
+				maptoLocation.put(row.getLocation(), itemList2);
 			}
 
 		});
@@ -91,8 +103,7 @@ public class AggregatePurchase {
 			TotalByLocation totalLoc = new TotalByLocation();
 			totalLoc.setLocation(entry.getKey());
 			totalLoc.setPurchaseList(entry.getValue());
-			System.out.println(entry);
-			Double total = entry.getValue().stream().mapToDouble(pp -> {
+			Double totalCredit = entry.getValue().stream().mapToDouble(pp -> {
 				if (pp.getCredit() != null && !pp.getCredit().isEmpty()) {
 					return Double.parseDouble(pp.getCredit());
 				} else {
@@ -100,7 +111,17 @@ public class AggregatePurchase {
 				}
 
 			}).sum();
-			totalLoc.setCreditTotal(total.intValue());
+
+			Double totalDebit = entry.getValue().stream().mapToDouble(pp -> {
+				if (pp.getDebit() != null && !pp.getDebit().isEmpty()) {
+					return Double.parseDouble(pp.getDebit());
+				} else {
+					return new Double(0.00);
+				}
+
+			}).sum();
+			totalLoc.setCreditTotal(totalCredit.intValue());
+			totalLoc.setDebitTotal(totalDebit.intValue());
 			totalByLocation.add(totalLoc);
 		});
 		totalByLocation.sort((a, b) -> a.getCreditTotal().compareTo(b.getCreditTotal()));
