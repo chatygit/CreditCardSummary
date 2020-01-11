@@ -1,0 +1,275 @@
+[
+	{
+		"name": "COFFEE",
+		"type": "FOOD",
+		"options": [
+			"TIM HORTONS",
+			"TIM HORTON'S",
+			"STARBUCKS",
+			"SECOND CUP"
+		]
+	},
+	{
+		"name": "ENTERTAINMENT",
+		"type": "ENTERTAINMENT",
+		"options": [
+			"CINEPLEX",
+			"CINEMA",
+			"MOVIES",
+			"Spotify"
+		]
+	},
+	{
+		"name": "BIG FOOD",
+		"type": "FOOD",
+		"options": [
+			"PIZZA PIZZA",
+			"PIZZA NOVA",
+			"GINO'S PIZZA",
+			"GINOS PIZZA",
+			"DOMINOS",
+			"MCDONALD'S",
+			"BURGER KING",
+			"CHIPOTLE",
+			"POPEYE'S",
+			"WENDY'S",
+			"A&W",
+			"JUST EAT"
+		]
+	},
+	{
+		"name": "NOT SO BIG FOOD",
+		"type": "FOOD",
+		"options": [
+			"AROMA",
+			"VILLA MADINA",
+			"SAMMY'S GOURMET",
+			"JACK ASTOR'S",
+			"SOUP NUTSY",
+			"GRACE O'MALLEYS",
+			"HAKKA NO.1",
+			"CALIFORNIA THAI",
+			"TERIYAKI EXP",
+			"LOUISIANA CHICKEN",
+			"GRILL",
+			"DELI",
+			"PIZAVILLE",
+			"BURRITO",
+			"SWISS CHALET",
+			"KABAB",
+			"BOOSTERJUICE",
+			"HALAL",
+			"SANDWICHES",
+			"KFC",
+			"TACO",
+			"SUBWAY",
+			"EATERY",
+			"BULK BARN",
+			"SOUVLAKI",
+			"BASKIN ROBBINS",
+			"JIMMY THE GREEK",
+			"DUMPLING",
+			"AROMA",
+			"FIRKIN"
+		]
+	},
+	{
+		"name": "GROCERY",
+		"type": "FOOD",
+		"options": [
+			"FOOD MARKET",
+			"FOODMART",
+			"SUPERMARKET",
+			"METRO",
+			"LONGO'S",
+			"SUPERCENTER",
+			"REXALL",
+			"SHOPPERS DRUG MART",
+			"PHARMA PLUS",
+			"SHOPPERSDRUGMART"
+		]
+	},
+	{
+		"name": "THE BEER STORE",
+		"type": "LIQUOR",
+		"options": [
+			"THE BEER STORE",
+			"BEER STORE"
+		]
+	},
+	{
+		"name": "LCBO",
+		"type": "LIQUOR",
+		"options": [
+			"LCBO"
+		]
+	},
+	{
+		"name": "CIC ONLINE",
+		"type": "CANADA-GOV",
+		"options": [
+			"ON-LINE OTTAWA",
+			"CITIZEN&IMM-EAPPS"
+		]
+	},
+	{
+		"name": "BIG ONLINE",
+		"type": "ONLINE-SHOP",
+		"options": [
+			"AMAZON",
+			"Amazon",
+			"AMAZON.CA",
+			"APPLE ONLINE",
+			"WALMART",
+			"WAL-MART",
+			"ITUNES",
+			"MSFT",
+			"DELL",
+			"IKEA",
+			"XBOX",
+			"SKYPE",
+			"GOOGLE",
+			"BEST BUY",
+			"FUTURE SHOP",
+			"NETFLIX"
+		]
+	},
+	{
+		"name": "NOT SO BIG ONLINE",
+		"type": "ONLINE-SHOP",
+		"options": [
+			"SEARS",
+			"CDN TIRE",
+			"FAMOUS PLAYER",
+			"WIKIMEDIA",
+			"EB GAMES",
+			"BENCH",
+			"GAP ONLINE",
+			"THE HOME DEPOT",
+			"RCSS",
+			"PAYPAL",
+			"DUTY FREE",
+			"STAPLES"
+		]
+	},
+	{
+		"name": "CLOTHING",
+		"type": "ONLINE-SHOP",
+		"options": [
+			"A EAGLE",
+			"AE CANADA",
+			"ALDO SHOES",
+			"CALLITSPRING",
+			"ABERCROMBIE & FITC",
+			"AE COM WEB",
+			"HOLLISTERCO",
+			"HOLLISTER",
+			"ABERCROMBIE",
+			"GAP",
+			"ZARA"
+		]
+	},
+	{
+		"name": "CARD PAYMENT",
+		"type": "PAYMENT",
+		"options": [
+			"PAYMENT - THANK YOU",
+			"BALANCE PROTECTION",
+			"RETAIL INTEREST",
+			"OVERLIMIT FEE",
+			"ANNUAL FEE",
+			"CASH ADVANCE FEE",
+			"CASH INTEREST"
+		]
+	},
+	{
+		"name": "GAS",
+		"type": "GAS",
+		"options": [
+			"SHELL",
+			"EXXON",
+			"ESSO",
+			"PETROCAN",
+			"7-ELEVEN",
+			"HUSKY",
+			"BIG BEAR"
+		]
+	},
+	{
+		"name": "PHONE BILL",
+		"type": "TELECOM",
+		"options": [
+			"BELL MONTREAL",
+			"BELL VERDUN",
+			"LOCALPHONE",
+			"PUBLIC MOBILE",
+			"VALUE MOBILE",
+			"BELL CANADA",
+			"KOODO MOBILE",
+			"VIRGIN MOBILE",
+			"ROGERS",
+			"ROGERS",
+			"CHATR",
+			"KOODO"
+		]
+	},
+	{
+		"name": "TRAVEL",
+		"type": "TRAVEL",
+		"options": [
+			"MARRIOTT",
+			"EXPEDIA",
+			"AIR CANADA",
+			"SAUDIA AIR",
+			"BRITISH AIRWAYS",
+			"FLIGHT HUB",
+			"DELTA AIR",
+			"CHEAPOAIR",
+			"UNITED AIR",
+			"TRIVAGO",
+			"EMIRATES",
+			"AIRPORT"
+		]
+	},
+	{
+		"name": "TRANSIT",
+		"type": "TRANSIT",
+		"options": [
+			"TTC",
+			"GO STATION",
+			"PRESTO",
+			"TAXI",
+			"U-HAUL",
+			"Uber BV",
+			"UBER",
+			"Uber"
+		]
+	},
+	{
+		"name": "HOSTING",
+		"type": "HOSTING",
+		"options": [
+			"HOSTGATOR",
+			"GODADDY"
+		]
+	},
+	{
+		"name": "TAX and TOWN",
+		"type": "TAX",
+		"options": [
+			"PLASTIQ",
+			"CRA",
+			"EQUIFAX",
+			"TOWN OF"
+		]
+	},
+	{
+		"name": "COLLEGE",
+		"type": "TUITION",
+		"options": [
+			"HUMBER",
+			"SENECA"
+		]
+	}
+]
+

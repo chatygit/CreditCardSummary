@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chaty.credit.magic.AggregatePurchase;
+import com.chaty.credit.magic.CategorizePurchase;
 import com.chaty.credit.model.CreditFileModel;
 import com.chaty.credit.model.TotalByLocation;
 
@@ -25,6 +26,9 @@ public class Controller {
 
 	@Autowired
 	private AggregatePurchase aggregator;
+	
+	@Autowired
+	private CategorizePurchase categorize;
 
 	@GetMapping
 	public String test() {
@@ -41,11 +45,18 @@ public class Controller {
 	public List<TotalByLocation> getAggregateLocation(@PathVariable("year") final Integer year) {
 		return aggregator.aggregateByLocation(getTransactionByYear(year));
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/aggregate/category/{year}")
+	public List<TotalByLocation> getAggregateCategory(@PathVariable("year") final Integer year) {
+		return aggregator.aggregateByCategory(getTransactionByYear(year));
+	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/list/{year}")
 	public List<CreditFileModel> getTransactionByYear(@PathVariable("year") final Integer year) {
 
 		List<CreditFileModel> dataList = dataProcessor.processFile();
+		
+		dataList = categorize.categorizePurchases(dataList);
 
 		Map<Integer, List<CreditFileModel>> mappedDate = new ConcurrentHashMap<Integer, List<CreditFileModel>>();
 

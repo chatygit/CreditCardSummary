@@ -14,6 +14,8 @@ public class CreditFileModel {
 	private String credit;
 	
 	private String debit;
+	
+	private String category;
 
 
 }

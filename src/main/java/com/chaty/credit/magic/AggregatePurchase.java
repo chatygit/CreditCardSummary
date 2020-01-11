@@ -128,5 +128,36 @@ public class AggregatePurchase {
 		return totalByLocation;
 
 	}
+	
+	
+	/**
+	 * Aggregates given list by Category.
+	 * 
+	 * @param dataList
+	 * @return List of {@link TotalByLocation}
+	 */
+	public List<TotalByLocation> aggregateByCategory(final List<CreditFileModel> dataList) {
+
+		final Map<String, List<CreditFileModel>> maptoCategory = new ConcurrentHashMap<String, List<CreditFileModel>>();
+
+		dataList.stream().forEach(row ->
+
+		{
+			if (maptoCategory.containsKey(row.getCategory())) {
+				List<CreditFileModel> itemList = maptoCategory.get(row.getCategory());
+				itemList.add(row);
+				maptoCategory.put(row.getCategory(), itemList);
+
+			} else {
+				List<CreditFileModel> itemList2 = new ArrayList<>();
+				itemList2.add(row);
+				maptoCategory.put(row.getCategory(), itemList2);
+			}
+
+		});
+
+		return aggregateTotals(maptoCategory);
+
+	}
 
 }
