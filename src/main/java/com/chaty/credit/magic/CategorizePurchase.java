@@ -16,32 +16,64 @@ import com.chaty.credit.model.CreditFileModel;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Tags a category from a predefined list compiled by me.
+ * 
+ * Since the combinations are endless to tag a given location to a category, i
+ * decided to go with just a few to see how the data will be grouped.
+ * 
+ * 
+ * 
+ * @author chaty
+ *
+ */
 @Component
 public class CategorizePurchase {
 
 	@Autowired
 	ResourceLoader resourceLoader;
 
-	public Optional<Category> findCategoryByLocation(final String location) throws IOException {
+	private Resource resource;
 
-		Resource resource = resourceLoader.getResource("classpath:data/category.json");
+	public CategorizePurchase(ResourceLoader resourceLoader) {
+		super();
+		this.resourceLoader = resourceLoader;
+		this.resource = resourceLoader.getResource("classpath:data/category.json");
+	}
+
+	/**
+	 * Loads a static JSON file into a list of {@link Category} objects.
+	 * 
+	 * @param location
+	 * @return {@link Optional} {@link Category}
+	 * @throws IOException
+	 */
+	public Optional<Category> findCategoryByLocation(final String location) throws IOException {
 
 		ObjectMapper mapper = new ObjectMapper();
 		InputStream is = resource.getInputStream();
 		List<Category> categList = mapper.readValue(is, new TypeReference<List<Category>>() {
 		});
 
-	   Optional<Category> categoryOpt =  categList.stream().filter( cat -> cat.getOptions().stream().anyMatch(optn -> location.contains(optn))).findFirst();
-				
-	   return categoryOpt;
+		Optional<Category> categoryOpt = categList.parallelStream()
+				.filter(cat -> cat.getOptions().parallelStream().anyMatch(optn -> location.contains(optn))).findFirst();
+
+		return categoryOpt;
 
 	}
 
+	/**
+	 * 
+	 * Tags a found Category or links OTHER as a category.
+	 * 
+	 * @param purchaseList
+	 * @return List of {@link CreditFileModel}
+	 */
 	public List<CreditFileModel> categorizePurchases(List<CreditFileModel> purchaseList) {
 
 		final List<CreditFileModel> catagorizedList = new ArrayList<>();
 
-		purchaseList.stream().forEach(purchase -> {
+		purchaseList.parallelStream().forEach(purchase -> {
 
 			Optional<Category> category;
 			try {

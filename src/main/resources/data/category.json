@@ -1,12 +1,24 @@
 [
 	{
+		"name": "DONATIONS",
+		"type": "DONATIONS",
+		"options": [
+			"HOSP FOR SICK",
+			"PLAN CANADA",
+			"SICKKIDS",
+			"JDRF"
+		]
+	},
+	{
 		"name": "COFFEE",
 		"type": "FOOD",
 		"options": [
 			"TIM HORTONS",
 			"TIM HORTON'S",
 			"STARBUCKS",
-			"SECOND CUP"
+			"SECOND CUP",
+			"COFFEE",
+			"CAFE"
 		]
 	},
 	{
@@ -16,7 +28,12 @@
 			"CINEPLEX",
 			"CINEMA",
 			"MOVIES",
-			"Spotify"
+			"Spotify",
+			"NETFLIX",
+			"NINTENDO",
+			"OLG",
+			"HOTSTAR",
+			"MOTOGP"
 		]
 	},
 	{
@@ -25,16 +42,19 @@
 		"options": [
 			"PIZZA PIZZA",
 			"PIZZA NOVA",
+			"PIZZA",
 			"GINO'S PIZZA",
 			"GINOS PIZZA",
 			"DOMINOS",
 			"MCDONALD'S",
+			"MCDONALDS",
 			"BURGER KING",
 			"CHIPOTLE",
 			"POPEYE'S",
 			"WENDY'S",
 			"A&W",
-			"JUST EAT"
+			"JUST EAT",
+			"SKIPTHEDISHES"
 		]
 	},
 	{
@@ -42,6 +62,9 @@
 		"type": "FOOD",
 		"options": [
 			"AROMA",
+			"SUSHI",
+			"CHICKEN",
+			"PASTA",
 			"VILLA MADINA",
 			"SAMMY'S GOURMET",
 			"JACK ASTOR'S",
@@ -61,6 +84,7 @@
 			"HALAL",
 			"SANDWICHES",
 			"KFC",
+			"CINNABON",
 			"TACO",
 			"SUBWAY",
 			"EATERY",
@@ -70,7 +94,25 @@
 			"JIMMY THE GREEK",
 			"DUMPLING",
 			"AROMA",
-			"FIRKIN"
+			"FIRKIN",
+			"BAR B Q",
+			"SZECHUAN",
+			"PUB",
+			"BOOSTER JUICE",
+			"UNCLE TETSU'S",
+			"THE FOX",
+			"AMSTERDAM BREWHOUSE",
+			"BAR",
+			"PIAZZA MANNA",
+			"BOSTON PIZZA",
+			"SHANGHAI 360",
+			"MILLER TAVERN",
+			"BANH MI BOYS",
+			"FOODS",
+			"FOOD",
+			"PULLMAN",
+			"BREWING",
+			"CORA"
 		]
 	},
 	{
@@ -86,7 +128,11 @@
 			"REXALL",
 			"SHOPPERS DRUG MART",
 			"PHARMA PLUS",
-			"SHOPPERSDRUGMART"
+			"SHOPPERSDRUGMART",
+			"INSTACART",
+			"COSTCO",
+			"LOBLAW",
+			"FOOD BASICS"
 		]
 	},
 	{
@@ -101,7 +147,8 @@
 		"name": "LCBO",
 		"type": "LIQUOR",
 		"options": [
-			"LCBO"
+			"LCBO",
+			"OCS/SOC"
 		]
 	},
 	{
@@ -109,7 +156,8 @@
 		"type": "CANADA-GOV",
 		"options": [
 			"ON-LINE OTTAWA",
-			"CITIZEN&IMM-EAPPS"
+			"CITIZEN&IMM-EAPPS",
+			"CITIZENSHIP & IMM ON-LINE"
 		]
 	},
 	{
@@ -117,21 +165,26 @@
 		"type": "ONLINE-SHOP",
 		"options": [
 			"AMAZON",
+			"AMZN",
 			"Amazon",
 			"AMAZON.CA",
 			"APPLE ONLINE",
 			"WALMART",
 			"WAL-MART",
+			"WAL*MART",
 			"ITUNES",
 			"MSFT",
 			"DELL",
 			"IKEA",
 			"XBOX",
 			"SKYPE",
+			"Skype",
 			"GOOGLE",
 			"BEST BUY",
+			"BESTBUYCANADA",
 			"FUTURE SHOP",
-			"NETFLIX"
+			"CANADIANTIRE",
+			"Microsoft"
 		]
 	},
 	{
@@ -149,7 +202,10 @@
 			"RCSS",
 			"PAYPAL",
 			"DUTY FREE",
-			"STAPLES"
+			"STAPLES",
+			"RONA",
+			"LOWES",
+			"ALIBABA"
 		]
 	},
 	{
@@ -158,15 +214,26 @@
 		"options": [
 			"A EAGLE",
 			"AE CANADA",
+			"AE.COM",
 			"ALDO SHOES",
+			"ALDO",
 			"CALLITSPRING",
 			"ABERCROMBIE & FITC",
 			"AE COM WEB",
+			"AMERICAN EAGLE",
 			"HOLLISTERCO",
 			"HOLLISTER",
 			"ABERCROMBIE",
 			"GAP",
-			"ZARA"
+			"ZARA",
+			"ALDOSHOES",
+			"JCrew",
+			"Uniqlo",
+			"OLD NAVY",
+			"FOSSIL",
+			"Crocs",
+			"LIFESTYLE",
+			"LIFE STYLE"
 		]
 	},
 	{
@@ -179,7 +246,8 @@
 			"OVERLIMIT FEE",
 			"ANNUAL FEE",
 			"CASH ADVANCE FEE",
-			"CASH INTEREST"
+			"CASH INTEREST",
+			"INTEREST CHARGE"
 		]
 	},
 	{
@@ -199,18 +267,16 @@
 		"name": "PHONE BILL",
 		"type": "TELECOM",
 		"options": [
-			"BELL MONTREAL",
-			"BELL VERDUN",
+			"BELL",
 			"LOCALPHONE",
 			"PUBLIC MOBILE",
 			"VALUE MOBILE",
-			"BELL CANADA",
 			"KOODO MOBILE",
 			"VIRGIN MOBILE",
 			"ROGERS",
-			"ROGERS",
 			"CHATR",
-			"KOODO"
+			"KOODO",
+			"TELUS"
 		]
 	},
 	{
@@ -220,15 +286,18 @@
 			"MARRIOTT",
 			"EXPEDIA",
 			"AIR CANADA",
+			"AIR CAN",
 			"SAUDIA AIR",
 			"BRITISH AIRWAYS",
 			"FLIGHT HUB",
+			"FLIGHTHUB",
 			"DELTA AIR",
 			"CHEAPOAIR",
 			"UNITED AIR",
 			"TRIVAGO",
 			"EMIRATES",
-			"AIRPORT"
+			"AIRPORT",
+			"LUFTHANSA"
 		]
 	},
 	{
@@ -237,12 +306,15 @@
 		"options": [
 			"TTC",
 			"GO STATION",
+			"GO TRANSIT",
 			"PRESTO",
 			"TAXI",
 			"U-HAUL",
 			"Uber BV",
 			"UBER",
-			"Uber"
+			"Uber",
+			"LYFT",
+			"LIMOUSINE"
 		]
 	},
 	{
@@ -250,7 +322,10 @@
 		"type": "HOSTING",
 		"options": [
 			"HOSTGATOR",
-			"GODADDY"
+			"GODADDY",
+			"Hostgator",
+			"SHOPIFY",
+			"PIVOTAL"
 		]
 	},
 	{
@@ -260,7 +335,8 @@
 			"PLASTIQ",
 			"CRA",
 			"EQUIFAX",
-			"TOWN OF"
+			"TOWN OF",
+			"HRBLOCK"
 		]
 	},
 	{
