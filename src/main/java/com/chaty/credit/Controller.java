@@ -1,6 +1,9 @@
 package com.chaty.credit;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,6 +19,8 @@ import com.chaty.credit.magic.AggregatePurchase;
 import com.chaty.credit.magic.CategorizePurchase;
 import com.chaty.credit.model.CreditFileModel;
 import com.chaty.credit.model.TotalByLocation;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 @RestController
 @RequestMapping("/credit/api")
@@ -32,13 +37,18 @@ public class Controller {
 
 	@GetMapping
 	public String test() {
-		dataProcessor.processTextile();
+		//writeToFiles();
 		return "chaty";
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/aggregate/year")
 	public List<TotalByLocation> getAggregateYear() {
 		return aggregator.aggregateByYear(dataProcessor.processFile());
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/aggregate/{year}/month")
+	public List<TotalByLocation> getAggregateMonth(@PathVariable("year") final Integer year) {
+		return aggregator.aggregateByMonth(getTransactionByYear(year));
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/aggregate/location/{year}")
@@ -81,6 +91,29 @@ public class Controller {
 		} else {
 			return new ArrayList<CreditFileModel>();
 		}
+	}
+	
+	
+	public void writeToFiles() {
+
+		List<Integer> yearList = Arrays.asList(2013,2014,2015,2016,2017,2018,2019);
+
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+		yearList.stream().forEach(year -> {
+
+			try {
+				mapper.writeValue(
+						new File("/Users/chaty/Documents/AngularWorkspace/ActivityAPP/src/assets/old-list/visa-" + year
+								+ ".json"),
+						getTransactionByYear(year));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+
 	}
 
 

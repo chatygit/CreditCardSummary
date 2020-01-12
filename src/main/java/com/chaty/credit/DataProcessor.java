@@ -31,8 +31,8 @@ import com.chaty.credit.model.CreditFileModel;
  * content onto text files in the following format.
  * 
  * 
- *  Debit : MAR 23 MAR 25 THE BEER STORE #2369 NORTH YORK $112.85 
- *  Credit: MAR 25 MAR 26 PAYMENT - THANK YOU -$300.00
+ * Debit : MAR 23 MAR 25 THE BEER STORE #2369 NORTH YORK $112.85 Credit: MAR 25
+ * MAR 26 PAYMENT - THANK YOU -$300.00
  * 
  * ```
  * 
@@ -160,5 +160,7 @@ public class DataProcessor {
 
 		return yearList;
 	}
+
+	
 
 }

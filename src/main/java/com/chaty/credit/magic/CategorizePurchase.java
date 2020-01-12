@@ -55,7 +55,7 @@ public class CategorizePurchase {
 		List<Category> categList = mapper.readValue(is, new TypeReference<List<Category>>() {
 		});
 
-		Optional<Category> categoryOpt = categList.parallelStream()
+		Optional<Category> categoryOpt = categList.stream()
 				.filter(cat -> cat.getOptions().parallelStream().anyMatch(optn -> location.contains(optn))).findFirst();
 
 		return categoryOpt;
@@ -73,7 +73,7 @@ public class CategorizePurchase {
 
 		final List<CreditFileModel> catagorizedList = new ArrayList<>();
 
-		purchaseList.parallelStream().forEach(purchase -> {
+		purchaseList.stream().forEach(purchase -> {
 
 			Optional<Category> category;
 			try {

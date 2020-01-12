@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Component;
@@ -100,6 +101,47 @@ public class AggregatePurchase {
 
 		return aggregateTotals(sortedMap);
 
+	}
+	
+	/**
+	 * Aggregates given list by Month.
+	 * 
+	 * @param dataList
+	 * @return List of {@link TotalByLocation}
+	 */
+	public List<TotalByLocation> aggregateByMonth(final List<CreditFileModel> dataList) {
+
+		final Map<String, List<CreditFileModel>> mappedDate = new ConcurrentHashMap<String, List<CreditFileModel>>();
+
+		dataList.stream().forEach(row -> {
+
+			if (mappedDate.containsKey(Integer.toString(row.getDate().getMonth().getValue()))) {
+
+				List<CreditFileModel> itemList = mappedDate.get(Integer.toString(row.getDate().getMonth().getValue()));
+				if (row.getDate() != null) {
+					itemList.add(row);
+					mappedDate.put(Integer.toString(row.getDate().getMonth().getValue()), itemList);
+				}
+
+			} else {
+				if (row.getDate() != null) {
+					List<CreditFileModel> itemList2 = new ArrayList<>();
+					itemList2.add(row);
+					mappedDate.put(Integer.toString(row.getDate().getMonth().getValue()), itemList2);
+				}
+			}
+
+		});
+		
+		TreeMap<String, List<CreditFileModel>> sortedMap = new TreeMap<>(); 
+
+		mappedDate.entrySet().stream().forEach(entry -> {
+			List<CreditFileModel> list = entry.getValue();
+			list.sort((a, b) -> a.getDate().compareTo(b.getDate()));
+			sortedMap.put(entry.getKey(),list);
+		});
+
+		return aggregateTotals(sortedMap);
 	}
 
 	/**
