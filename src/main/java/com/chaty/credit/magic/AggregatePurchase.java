@@ -1,6 +1,7 @@
 package com.chaty.credit.magic;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,9 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.chaty.credit.model.CreditFileModel;
 import com.chaty.credit.model.TotalByLocation;
-
-
-
 
 /**
  * 
@@ -54,7 +52,15 @@ public class AggregatePurchase {
 
 		});
 
-		return aggregateTotals(mappedDate);
+		final Map<String, List<CreditFileModel>> sortedMap = new HashMap<String, List<CreditFileModel>>();
+
+		mappedDate.entrySet().stream().forEach(entry -> {
+			List<CreditFileModel> list = entry.getValue();
+			list.sort((a, b) -> a.getDate().compareTo(b.getDate()));
+			sortedMap.put(entry.getKey(),list);
+		});
+
+		return aggregateTotals(sortedMap);
 
 	}
 
@@ -83,8 +89,16 @@ public class AggregatePurchase {
 			}
 
 		});
+		
+		final Map<String, List<CreditFileModel>> sortedMap = new HashMap<String, List<CreditFileModel>>();
 
-		return aggregateTotals(maptoLocation);
+		maptoLocation.entrySet().stream().forEach(entry -> {
+			List<CreditFileModel> list = entry.getValue();
+			list.sort((a, b) -> a.getDate().compareTo(b.getDate()));
+			sortedMap.put(entry.getKey(),list);
+		});
+
+		return aggregateTotals(sortedMap);
 
 	}
 
@@ -128,8 +142,7 @@ public class AggregatePurchase {
 		return totalByLocation;
 
 	}
-	
-	
+
 	/**
 	 * Aggregates given list by Category.
 	 * 
@@ -155,8 +168,16 @@ public class AggregatePurchase {
 			}
 
 		});
+		
+		final Map<String, List<CreditFileModel>> sortedMap = new HashMap<String, List<CreditFileModel>>();
 
-		return aggregateTotals(maptoCategory);
+		maptoCategory.entrySet().stream().forEach(entry -> {
+			List<CreditFileModel> list = entry.getValue();
+			list.sort((a, b) -> a.getDate().compareTo(b.getDate()));
+			sortedMap.put(entry.getKey(),list);
+		});
+
+		return aggregateTotals(sortedMap);
 
 	}
 
