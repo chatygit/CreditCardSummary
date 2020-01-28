@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import com.chaty.credit.model.ChatModel;
 import com.chaty.credit.model.CreditFileModel;
 
 /**
@@ -161,6 +162,56 @@ public class DataProcessor {
 		return yearList;
 	}
 
-	
+	public List<ChatModel> processWhatsAPP() {
+
+		List<ChatModel> chatList = new ArrayList<ChatModel>();
+		String siri = "+91 95130 99158‬:";
+		String chaty = "Chaty:";
+		
+		DateTimeFormatter formatterWhatsapp = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+		try (BufferedReader br = new BufferedReader(new FileReader("/Users/chaty/Documents/_chat.txt"))) {
+
+			while ((line = br.readLine()) != null) {
+				if(line.startsWith("[")) {
+					
+					String dateTime = line.substring(0,line.lastIndexOf("M]") + 1);
+					String[] splitDate = dateTime.replaceAll("\\[", "").split(",");
+					String date = splitDate[0];
+					String time = splitDate[1];
+					
+					LocalDate localDate = LocalDate.parse(date, formatterWhatsapp);
+					
+					ChatModel chat = new ChatModel();
+					chat.setDate(localDate);
+					
+					if(line.contains(chaty)) {
+						String message = line.substring(line.lastIndexOf(chaty)+chaty.length()+1);
+						chat.setSentBy("Chaty");
+						chat.setMessage(message);
+					}else {
+						String message = line.substring(line.lastIndexOf(siri)+siri.length()+1);
+						chat.setSentBy("Siri");
+						chat.setMessage(message);
+					}
+					
+					
+					chatList.add(chat);
+					
+				}else {
+					System.out.println("Long One");
+				}
+			}
+
+		} catch (IOException e) {
+			System.out.println("EXCE");
+			e.printStackTrace();
+		}
+		
+		//System.out.println(chatList);
+
+		return chatList;
+
+	}
 
 }

@@ -19,6 +19,7 @@ import com.chaty.credit.magic.AggregatePurchase;
 import com.chaty.credit.magic.CategorizePurchase;
 import com.chaty.credit.model.CreditFileModel;
 import com.chaty.credit.model.TotalByLocation;
+import com.chaty.credit.repository.ChatRepo;
 import com.chaty.credit.repository.CreditFileRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -38,10 +39,14 @@ public class Controller {
 	
 	@Autowired
 	private CreditFileRepo creditRepo;
+	
+	@Autowired
+	private ChatRepo chatRepo;
 
 	@GetMapping
 	public String test() {
-		creditRepo.saveAll(dataProcessor.processFile());
+		//creditRepo.saveAll(dataProcessor.processFile());
+		//chatRepo.saveAll(dataProcessor.processWhatsAPP());
 		return "chaty";
 	}
 	
