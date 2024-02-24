@@ -16,19 +16,19 @@ public class CreditFileModel {
 	@Id
 	private String id;
 
-	@Field(fielddata = true, type = FieldType.Date)
+	@Field(type = FieldType.Date)
 	private LocalDate date;
 	
-	@Field(fielddata = true, type = FieldType.Text)
+	@Field(type = FieldType.Text)
 	private String location;
 
-	@Field(fielddata = true, type = FieldType.Float)
+	@Field(type = FieldType.Float)
 	private String credit;
 
-	@Field(fielddata = true, type = FieldType.Float)
+	@Field(type = FieldType.Float)
 	private String debit;
 	
-	@Field(fielddata = true, type = FieldType.Text)
+	@Field(type = FieldType.Text)
 	private String category;
 
 }

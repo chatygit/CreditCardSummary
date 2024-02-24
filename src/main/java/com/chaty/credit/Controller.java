@@ -79,7 +79,7 @@ public class Controller {
 
 		Map<Integer, List<CreditFileModel>> mappedDate = new ConcurrentHashMap<Integer, List<CreditFileModel>>();
 
-		dataList.stream().forEach(row -> {
+		dataList.forEach(row -> {
 			if (mappedDate.containsKey(row.getDate().getYear())) {
 				List<CreditFileModel> itemList = mappedDate.get(row.getDate().getYear());
 				if (row.getDate() != null) {
@@ -87,18 +87,16 @@ public class Controller {
 					mappedDate.put(row.getDate().getYear(), itemList);
 				}
 			} else {
-				if (row.getDate() != null) {
-					List<CreditFileModel> itemList2 = new ArrayList<>();
-					itemList2.add(row);
-					mappedDate.put(row.getDate().getYear(), itemList2);
-				}
-			}
+                List<CreditFileModel> itemList2 = new ArrayList<>();
+                itemList2.add(row);
+                mappedDate.put(row.getDate().getYear(), itemList2);
+            }
 		});
 
 		if (mappedDate.containsKey(year)) {
 			return mappedDate.get(year);
 		} else {
-			return new ArrayList<CreditFileModel>();
+			return new ArrayList<>();
 		}
 	}
 	

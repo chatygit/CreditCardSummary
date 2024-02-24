@@ -10,7 +10,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import lombok.Data;
 
 @Data
-@Document(indexName = "chaty", type = "totallocation")
+@Document(indexName = "chaty")
 public class TotalByLocation {
 	
 	@Id

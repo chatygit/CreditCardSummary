@@ -17,16 +17,15 @@ public class ChatModel {
 	@Id
 	private String id;
 
-	@Field(fielddata = true)
+	@Field(type = FieldType.Date)
 	private LocalDate date;
 	
-	@Field(fielddata = true, type=FieldType.Text)
+	@Field(type=FieldType.Text)
 	private String message;
-	
-	@Field(fielddata = true)
+
 	private String sentBy;
 
-	@Field(fielddata = true, type = FieldType.Nested)
+	@Field(type = FieldType.Nested)
 	private List<String> emojiList;
 
 
