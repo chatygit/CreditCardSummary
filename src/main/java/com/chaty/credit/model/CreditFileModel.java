@@ -1,10 +1,12 @@
 package com.chaty.credit.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
 public class CreditFileModel {
 
 	private String id;

@@ -96,7 +96,7 @@ public class Controller {
 
 			try {
 				mapper.writeValue(
-						new File("/Users/chaty/Documents/AngularWorkspace/ActivityAPP/src/assets/old-list/visa-" + year
+						new File("/Users/babachaitanyakothapalli/Documents/IdeaProjects/ActivityAPP/src/assets/old-list/visa-" + year
 								+ ".json"),
 						getTransactionByYear(year));
 			} catch (IOException e) {
