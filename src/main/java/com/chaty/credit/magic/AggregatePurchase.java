@@ -1,10 +1,6 @@
 package com.chaty.credit.magic;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,9 +27,9 @@ public class AggregatePurchase {
      */
     public List<TotalByLocation> aggregateByYear(final List<CreditFileModel> dataList) {
 
-        final Map<String, List<CreditFileModel>> mappedDate = new ConcurrentHashMap<String, List<CreditFileModel>>();
+        final Map<String, List<CreditFileModel>> mappedDate = new ConcurrentHashMap<>();
 
-        dataList.stream().forEach(row -> {
+        dataList.forEach(row -> {
 
             if (mappedDate.containsKey(Integer.toString(row.getDate().getYear()))) {
 
@@ -44,21 +40,18 @@ public class AggregatePurchase {
                 }
 
             } else {
-                if (row.getDate() != null) {
-                    List<CreditFileModel> itemList2 = new ArrayList<>();
-                    itemList2.add(row);
-                    mappedDate.put(Integer.toString(row.getDate().getYear()), itemList2);
-                }
+                List<CreditFileModel> itemList2 = new ArrayList<>();
+                itemList2.add(row);
+                mappedDate.put(Integer.toString(row.getDate().getYear()), itemList2);
             }
 
         });
 
-        final Map<String, List<CreditFileModel>> sortedMap = new HashMap<String, List<CreditFileModel>>();
+        final Map<String, List<CreditFileModel>> sortedMap = new HashMap<>();
 
-        mappedDate.entrySet().stream().forEach(entry -> {
-            List<CreditFileModel> list = entry.getValue();
-            list.sort((a, b) -> a.getDate().compareTo(b.getDate()));
-            sortedMap.put(entry.getKey(), list);
+        mappedDate.forEach((key, list) -> {
+            list.sort(Comparator.comparing(CreditFileModel::getDate));
+            sortedMap.put(key, list);
         });
 
         return aggregateTotals(sortedMap);
@@ -73,9 +66,9 @@ public class AggregatePurchase {
      */
     public List<TotalByLocation> aggregateByLocation(final List<CreditFileModel> dataList) {
 
-        final Map<String, List<CreditFileModel>> maptoLocation = new ConcurrentHashMap<String, List<CreditFileModel>>();
+        final Map<String, List<CreditFileModel>> maptoLocation = new ConcurrentHashMap<>();
 
-        dataList.stream().forEach(row ->
+        dataList.forEach(row ->
 
         {
             if (maptoLocation.containsKey(row.getLocation())) {
@@ -91,12 +84,11 @@ public class AggregatePurchase {
 
         });
 
-        final Map<String, List<CreditFileModel>> sortedMap = new HashMap<String, List<CreditFileModel>>();
+        final Map<String, List<CreditFileModel>> sortedMap = new HashMap<>();
 
-        maptoLocation.entrySet().stream().forEach(entry -> {
-            List<CreditFileModel> list = entry.getValue();
-            list.sort((a, b) -> a.getDate().compareTo(b.getDate()));
-            sortedMap.put(entry.getKey(), list);
+        maptoLocation.forEach((key, list) -> {
+            list.sort(Comparator.comparing(CreditFileModel::getDate));
+            sortedMap.put(key, list);
         });
 
         return aggregateTotals(sortedMap);
@@ -111,9 +103,9 @@ public class AggregatePurchase {
      */
     public List<TotalByLocation> aggregateByMonth(final List<CreditFileModel> dataList) {
 
-        final Map<String, List<CreditFileModel>> mappedDate = new ConcurrentHashMap<String, List<CreditFileModel>>();
+        final Map<String, List<CreditFileModel>> mappedDate = new ConcurrentHashMap<>();
 
-        dataList.stream().forEach(row -> {
+        dataList.forEach(row -> {
 
             if (mappedDate.containsKey(Integer.toString(row.getDate().getMonth().getValue()))) {
 
@@ -124,21 +116,18 @@ public class AggregatePurchase {
                 }
 
             } else {
-                if (row.getDate() != null) {
-                    List<CreditFileModel> itemList2 = new ArrayList<>();
-                    itemList2.add(row);
-                    mappedDate.put(Integer.toString(row.getDate().getMonth().getValue()), itemList2);
-                }
+                List<CreditFileModel> itemList2 = new ArrayList<>();
+                itemList2.add(row);
+                mappedDate.put(Integer.toString(row.getDate().getMonth().getValue()), itemList2);
             }
 
         });
 
         TreeMap<String, List<CreditFileModel>> sortedMap = new TreeMap<>();
 
-        mappedDate.entrySet().stream().forEach(entry -> {
-            List<CreditFileModel> list = entry.getValue();
-            list.sort((a, b) -> a.getDate().compareTo(b.getDate()));
-            sortedMap.put(entry.getKey(), list);
+        mappedDate.forEach((key, list) -> {
+            list.sort(Comparator.comparing(CreditFileModel::getDate));
+            sortedMap.put(key, list);
         });
 
         return aggregateTotals(sortedMap);
@@ -152,35 +141,35 @@ public class AggregatePurchase {
      */
     private List<TotalByLocation> aggregateTotals(final Map<String, List<CreditFileModel>> maptoLocation) {
 
-        List<TotalByLocation> totalByLocation = new ArrayList<TotalByLocation>();
+        List<TotalByLocation> totalByLocation = new ArrayList<>();
 
-        maptoLocation.entrySet().stream().forEach(entry -> {
+        maptoLocation.forEach((key, value) -> {
             TotalByLocation totalLoc = new TotalByLocation();
-            totalLoc.setLocation(entry.getKey());
-            totalLoc.setPurchaseList(entry.getValue());
-            Double totalCredit = entry.getValue().stream().mapToDouble(pp -> {
+            totalLoc.setLocation(key);
+            totalLoc.setPurchaseList(value);
+            double totalCredit = value.stream().mapToDouble(pp -> {
                 log.info(pp.toString());
                 if (pp.getCredit() != null && !pp.getCredit().isEmpty()) {
                     return Double.parseDouble(pp.getCredit());
                 } else {
-                    return new Double(0.00);
+                    return 0.00;
                 }
 
             }).sum();
 
-            Double totalDebit = entry.getValue().stream().mapToDouble(pp -> {
+            double totalDebit = value.stream().mapToDouble(pp -> {
                 if (pp.getDebit() != null && !pp.getDebit().isEmpty()) {
                     return Double.parseDouble(pp.getDebit());
                 } else {
-                    return new Double(0.00);
+                    return 0.00;
                 }
 
             }).sum();
-            totalLoc.setCreditTotal(totalCredit.intValue());
-            totalLoc.setDebitTotal(totalDebit.intValue());
+            totalLoc.setCreditTotal((int) totalCredit);
+            totalLoc.setDebitTotal((int) totalDebit);
             totalByLocation.add(totalLoc);
         });
-        totalByLocation.sort((a, b) -> a.getCreditTotal().compareTo(b.getCreditTotal()));
+        totalByLocation.sort(Comparator.comparing(TotalByLocation::getCreditTotal));
 
         return totalByLocation;
 
@@ -194,7 +183,7 @@ public class AggregatePurchase {
      */
     public List<TotalByLocation> aggregateByCategory(final List<CreditFileModel> dataList) {
 
-        final Map<String, List<CreditFileModel>> maptoCategory = new ConcurrentHashMap<String, List<CreditFileModel>>();
+        final Map<String, List<CreditFileModel>> maptoCategory = new ConcurrentHashMap<>();
 
         dataList.stream().forEach(row ->
 
@@ -212,12 +201,11 @@ public class AggregatePurchase {
 
         });
 
-        final Map<String, List<CreditFileModel>> sortedMap = new HashMap<String, List<CreditFileModel>>();
+        final Map<String, List<CreditFileModel>> sortedMap = new HashMap<>();
 
-        maptoCategory.entrySet().stream().forEach(entry -> {
-            List<CreditFileModel> list = entry.getValue();
-            list.sort((a, b) -> a.getDate().compareTo(b.getDate()));
-            sortedMap.put(entry.getKey(), list);
+        maptoCategory.forEach((key, list) -> {
+            list.sort(Comparator.comparing(CreditFileModel::getDate));
+            sortedMap.put(key, list);
         });
 
         return aggregateTotals(sortedMap);

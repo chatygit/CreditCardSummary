@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import com.chaty.credit.model.ChatModel;
 import com.chaty.credit.model.CreditFileModel;
+import org.springframework.stereotype.Service;
 
 /**
  * Loads different sources of data into a generic {@link CreditFileModel}
@@ -39,7 +40,7 @@ import com.chaty.credit.model.CreditFileModel;
  *
  * @author chaty
  */
-@Component
+@Service
 @Slf4j
 public class DataProcessor {
 
@@ -52,7 +53,7 @@ public class DataProcessor {
 
         List<CreditFileModel> yearList = new ArrayList<CreditFileModel>();
 
-        try (Stream<Path> paths = Files.walk(Paths.get("/Users/babachaitanyakothapalli/Downloads/TaxDocs/Test"))) {
+        try (Stream<Path> paths = Files.walk(Paths.get("/Users/babachaitanyakothapalli/Documents/OLD_TAX_DOCS/Test"))) {
             paths.filter(Files::isRegularFile).filter(path -> path.getFileName().toString().endsWith("csv")).forEach(file -> {
                 //log.info(file.getFileName().toString());
                 try (BufferedReader br = new BufferedReader(new FileReader(file.toString()))) {
@@ -117,7 +118,7 @@ public class DataProcessor {
         monthMap.put("NOV", 11);
         monthMap.put("DEC", 12);
 
-        try (Stream<Path> paths = Files.walk(Paths.get("/Users/babachaitanyakothapalli/Downloads/TaxDocs/TextVisa"))) {
+        try (Stream<Path> paths = Files.walk(Paths.get("/Users/babachaitanyakothapalli/Documents/OLD_TAX_DOCS/TextVisa"))) {
             paths.filter(Files::isRegularFile).forEach(file -> {
 
                 try (BufferedReader br = new BufferedReader(new FileReader(file.toString()))) {
