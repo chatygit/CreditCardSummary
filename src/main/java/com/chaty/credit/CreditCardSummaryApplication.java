@@ -1,11 +1,16 @@
 package com.chaty.credit;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@SpringBootApplication
-@EnableElasticsearchRepositories
+@Configuration
+@EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
+@ComponentScan(basePackages = "com.chaty.credit")
 public class CreditCardSummaryApplication {
 
 	public static void main(String[] args) {

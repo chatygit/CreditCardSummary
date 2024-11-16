@@ -112,7 +112,11 @@
 			"FOOD",
 			"PULLMAN",
 			"BREWING",
-			"CORA"
+			"CORA",
+			"TAZA",
+			"SILVER SPOON",
+			"POPEYES",
+			"BEAVER TAILS"
 		]
 	},
 	{
@@ -132,7 +136,8 @@
 			"INSTACART",
 			"COSTCO",
 			"LOBLAW",
-			"FOOD BASICS"
+			"FOOD BASICS",
+			"CITI - HURONTARIO"
 		]
 	},
 	{
@@ -260,7 +265,8 @@
 			"PETROCAN",
 			"7-ELEVEN",
 			"HUSKY",
-			"BIG BEAR"
+			"BIG BEAR",
+			"MOBIL"
 		]
 	},
 	{
@@ -276,7 +282,10 @@
 			"ROGERS",
 			"CHATR",
 			"KOODO",
-			"TELUS"
+			"TELUS",
+			"FIDO",
+			"COGECO",
+			"APPLE"
 		]
 	},
 	{
@@ -297,7 +306,8 @@
 			"TRIVAGO",
 			"EMIRATES",
 			"AIRPORT",
-			"LUFTHANSA"
+			"LUFTHANSA",
+			"ETIHAD"
 		]
 	},
 	{
@@ -344,7 +354,35 @@
 		"type": "TUITION",
 		"options": [
 			"HUMBER",
-			"SENECA"
+			"SENECA",
+			"SHERIDAN"
+		]
+	},
+	{
+		"name": "INSURANCE",
+		"type": "INSURANCE-PAY",
+		"options": [
+			"SECURITY NATIONAL"
+		]
+	},
+	{
+		"name": "CASH-ADV",
+		"type": "NOT-EXPENSES",
+		"options": [
+			"SCOTIABANK PAYMENT",
+			"CASH ADV",
+			"CR BAL REF RVSL",
+			"CREDIT BALANCE REFUND"
+		]
+	},
+	{
+		"name": "WEED",
+		"type": "420",
+		"options": [
+			"CULTURE RISING",
+			"HIBUZZ INC",
+			"CANNABIS",
+			"WEED"
 		]
 	}
 ]
