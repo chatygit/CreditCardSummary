@@ -52,12 +52,12 @@ public class DataProcessor {
 
         try (Stream<Path> paths = Files.walk(Paths.get("/Users/babachaitanyakothapalli/Documents/OLD_TAX_DOCS/Test"))) {
             paths.filter(Files::isRegularFile).filter(path -> path.getFileName().toString().endsWith("csv")).forEach(file -> {
-                //log.info(file.getFileName().toString());
+                log.info(file.getFileName().toString());
                 try (BufferedReader br = new BufferedReader(new FileReader(file.toString()))) {
 
                     while ((line = br.readLine()) != null) {
 
-                        if (line.contains(",")) {
+                        if (line.contains("BOOSTER JUICE, STORE")) {
 
                             String[] country = line.split(cvsSplitBy);
 
