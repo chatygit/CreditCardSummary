@@ -57,7 +57,7 @@ public class DataProcessor {
 
                     while ((line = br.readLine()) != null) {
 
-                        if (line.contains("BOOSTER JUICE, STORE")) {
+                        if (line.contains(",")) {
 
                             String[] country = line.split(cvsSplitBy);
 
