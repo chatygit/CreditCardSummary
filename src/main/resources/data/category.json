@@ -33,7 +33,8 @@
 			"NINTENDO",
 			"OLG",
 			"HOTSTAR",
-			"MOTOGP"
+			"MOTOGP",
+			"SPOTIFY"
 		]
 	},
 	{
@@ -54,7 +55,9 @@
 			"WENDY'S",
 			"A&W",
 			"JUST EAT",
-			"SKIPTHEDISHES"
+			"SKIPTHEDISHES",
+			"DOORDASH",
+			"WENDYS"
 		]
 	},
 	{
@@ -116,7 +119,17 @@
 			"TAZA",
 			"SILVER SPOON",
 			"POPEYES",
-			"BEAVER TAILS"
+			"BEAVER TAILS",
+			"CHULLA EXPRESS",
+			"MONTANAS",
+			"KHAZANA",
+			"DOLLARAMA",
+			"TURTLE JACK",
+			"DD/DOOR",
+			"TETSU",
+			"ANNALAKSHMI",
+			"DOUGH",
+			"IDLI"
 		]
 	},
 	{
@@ -137,7 +150,9 @@
 			"COSTCO",
 			"LOBLAW",
 			"FOOD BASICS",
-			"CITI - HURONTARIO"
+			"CITI - HURONTARIO",
+			"DOLLRAMA",
+			"APNA FARM"
 		]
 	},
 	{
@@ -238,7 +253,9 @@
 			"FOSSIL",
 			"Crocs",
 			"LIFESTYLE",
-			"LIFE STYLE"
+			"LIFE STYLE",
+			"OLDNAVY.COM",
+			"LEVI CANADA"
 		]
 	},
 	{
@@ -266,7 +283,9 @@
 			"7-ELEVEN",
 			"HUSKY",
 			"BIG BEAR",
-			"MOBIL"
+			"MOBIL",
+			"PETRO",
+			"CANADIAN TIRE"
 		]
 	},
 	{
@@ -285,7 +304,8 @@
 			"TELUS",
 			"FIDO",
 			"COGECO",
-			"APPLE"
+			"APPLE",
+			"Netflix.com"
 		]
 	},
 	{
@@ -307,7 +327,8 @@
 			"EMIRATES",
 			"AIRPORT",
 			"LUFTHANSA",
-			"ETIHAD"
+			"ETIHAD",
+			"CATHAY"
 		]
 	},
 	{
@@ -382,7 +403,17 @@
 			"CULTURE RISING",
 			"HIBUZZ INC",
 			"CANNABIS",
-			"WEED"
+			"WEED",
+			"VALUE BUDS"
+		]
+	},
+	{
+		"name": "DENTIST",
+		"type": "HEALTH",
+		"options": [
+			"LIFELABS",
+			"DENTAL",
+			"PHARMACY"
 		]
 	}
 ]
