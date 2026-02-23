@@ -19,6 +19,7 @@ public class ShrimpController {
 
     @PostMapping("/save")
     public List<Map<String, Object>> saveJsonToFile(@RequestBody List<Map<String, Object>> jsonData, @RequestParam String filename) {
+        log.info("Received request to save JSON data to data: {} and {}", jsonData,filename);
         ObjectMapper objectMapper = new ObjectMapper();
         File directory = new File(SHRIMP_DIRECTORY);
 
